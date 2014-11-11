@@ -22,7 +22,10 @@ $(function() {
     });
 
     dfd.promise().then(function(results) {
-      $('div').text(results.yesNo);
+      $('div').
+        hide().
+        text(results.yesNo).
+        slideDown('fast');
     });
   });
 });
