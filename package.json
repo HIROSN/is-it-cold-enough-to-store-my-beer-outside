@@ -1,10 +1,11 @@
 {
-  "name": "node-js-getting-started",
+  "name": "is-it-cold-enough-to-store-my-beer-outside",
   "version": "0.1.2",
-  "description": "A sample Node.js app using Express 4",
+  "description": "Is it cold enough to store my beer outside? assignment.",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "test": "node_modules/grunt-cli/bin/grunt"
   },
   "dependencies": {
     "express": "~4.9.x"
@@ -14,12 +15,18 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/heroku/node-js-getting-started"
+    "url": "https://github.com/HIROSN/is-it-cold-enough-to-store-my-beer-outside.git"
   },
   "keywords": [
     "node",
     "heroku",
     "express"
   ],
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-cli": "^0.1.13",
+    "grunt-contrib-jshint": "^0.10.0",
+    "grunt-jscs": "^0.8.1"
+  }
 }
