@@ -16,6 +16,7 @@ app.post('/api', function(req, res) {
   var query = req.body.Latitude + ',' + req.body.Longitude;
 
   combined.query(query).then(function(result) {
+    if (!result.current_observation) { return res.status(500).json({}); }
     var tempf = result.current_observation.temp_f;
     var yesNo = (tempf <= process.env.TEMPF) ? 'YES' : 'NO';
     res.json({yesNo: yesNo});
