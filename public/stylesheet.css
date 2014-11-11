@@ -1,0 +1,12 @@
+* {
+  font-family: Helvetica, Arial;
+}
+
+div {
+  font-size: 72pt;
+}
+
+a {
+  text-decoration: none;
+  color: lightgray;
+}

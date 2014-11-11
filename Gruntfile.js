@@ -17,7 +17,8 @@ module.exports = function(grunt) {
     jscs: {
       src: srcFiles,
       options: {
-        preset: 'google'
+        preset: 'google',
+        requireCamelCaseOrUpperCaseIdentifiers: 'ignoreProperties'
       }
     }
   });

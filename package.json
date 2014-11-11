@@ -8,7 +8,9 @@
     "test": "node_modules/grunt-cli/bin/grunt"
   },
   "dependencies": {
-    "express": "~4.9.x"
+    "body-parser": "^1.9.2",
+    "express": "~4.9.x",
+    "wunderground-api-client": "^0.1.0"
   },
   "engines": {
     "node": "0.10.x"
