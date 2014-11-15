@@ -22,14 +22,13 @@ describe('REST API tests', function() {
     });
   });
 
-  it('should return 404 for get /api with valid data', function(done) {
+  it('should return 500 for get /api without query', function(done) {
     chai.request(server).
     get('/api').
-    send({Latitude: 47.6, Longitude: 122.3}).
     end(function(err, res) {
       expect(err).equals(null);
       expect(res).to.be.a('object');
-      expect(res).to.have.status(404);
+      expect(res).to.have.status(500);
       done();
     });
   });

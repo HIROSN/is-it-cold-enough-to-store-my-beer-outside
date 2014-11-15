@@ -10,8 +10,11 @@ app.set('port', (process.env.PORT || 3000));
 app.use(bodyparser.json());
 app.use(express.static(__dirname + '/public'));
 
-app.post('/api', function(req, res) {
-  request.get('http://ip-api.com/json/' + req.body.ip).
+var api = function(req, res) {
+  var ip = req.body.ip || req.query.ip;
+  if (!ip) { return res.status(500).json({}); }
+
+  request.get('http://ip-api.com/json/' + ip).
     end(function(err, data) {
       if (err || !data) { return res.status(500).json({}); }
       var location = JSON.parse(data.text);
@@ -33,16 +36,20 @@ app.post('/api', function(req, res) {
           result.location.state + ' ' +
           result.location.country_name;
 
-        res.json({
+        var json = {
           yesNo: yesNo,
           tempf: tempf,
           city: city,
           ip: location.query,
           isp: location.isp
-        });
+        };
 
+        if (!req.body.ip) { return res.jsonp(json); }
+        res.json(json);
       }).done();
     });
-});
+};
 
+app.get('/api', api);
+app.post('/api', api);
 app.listen(app.get('port'));
