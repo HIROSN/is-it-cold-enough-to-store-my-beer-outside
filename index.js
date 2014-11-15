@@ -29,14 +29,16 @@ app.post('/api', function(req, res) {
         var tempf = result.current_observation.temp_f;
         var yesNo = (tempf <= process.env.TEMPF) ? 'YES' : 'NO';
 
-        var location = result.location.city + ', ' +
-        result.location.state + ' ' +
-        result.location.country_name;
+        var city = result.location.city + ', ' +
+          result.location.state + ' ' +
+          result.location.country_name;
 
         res.json({
           yesNo: yesNo,
           tempf: tempf,
-          location: location
+          city: city,
+          ip: location.query,
+          isp: location.isp
         });
 
       }).done();
