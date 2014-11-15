@@ -36,6 +36,10 @@ $(function() {
         hide().
         text(results.yesNo).
         slideDown('fast', function() {
+          $('#tempf').text(results.tempf + '°F');
+          $('#city').text(results.city);
+          $('#ip').text(results.ip);
+          $('#isp').text(results.isp);
           $('.info').slideDown('fast');
         });
     });
