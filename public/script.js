@@ -32,10 +32,12 @@ $(function() {
     });
 
     dfd.promise().then(function(results) {
-      $('div').
+      $('#yesNo').
         hide().
         text(results.yesNo).
-        slideDown('fast');
+        slideDown('fast', function() {
+          $('.info').slideDown('fast');
+        });
     });
   });
 });
