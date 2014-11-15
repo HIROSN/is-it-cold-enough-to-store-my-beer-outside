@@ -1,15 +1,25 @@
 'use strict';
 
 $(function() {
-  if (!navigator.geolocation) { return; }
-
-  navigator.geolocation.getCurrentPosition(function(position) {
+  var getIPaddress = function(done) {
     var dfd = $.Deferred();
 
-    var data = {
-      Latitude: position.coords.latitude,
-      Longitude: position.coords.longitude
-    };
+    $.ajax({
+      contentType: 'application/json; charset=utf-8',
+      url: 'https://freegeoip.net/json/',
+      dataType: 'jsonp',
+      success: dfd.resolve,
+      error: dfd.reject
+    });
+
+    dfd.promise().then(function(results) {
+      done(results.ip);
+    });
+  };
+
+  getIPaddress(function(ip) {
+    var dfd = $.Deferred();
+    var data = {ip: ip};
 
     $.ajax({
       type: 'POST',
