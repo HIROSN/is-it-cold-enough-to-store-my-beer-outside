@@ -1,29 +1,14 @@
 'use strict';
 
 $(function() {
-  var getLocation = function(done) {
-    var dfd = $.Deferred();
+  if (!navigator.geolocation) { return; }
 
-    $.ajax({
-      type: 'GET',
-      contentType: 'application/json; charset=utf-8',
-      url: 'http://ip-api.com/json',
-      dataType: 'jsonp',
-      success: dfd.resolve,
-      error: dfd.reject
-    });
-
-    dfd.promise().then(function(results) {
-      done(results.lat, results.lon);
-    });
-  };
-
-  getLocation(function(lat, lon) {
+  navigator.geolocation.getCurrentPosition(function(position) {
     var dfd = $.Deferred();
 
     var data = {
-      Latitude: lat,
-      Longitude: lon
+      Latitude: position.coords.latitude,
+      Longitude: position.coords.longitude
     };
 
     $.ajax({
