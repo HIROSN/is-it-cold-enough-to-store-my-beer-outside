@@ -18,8 +18,8 @@ public/script.js      index.js
 
 POST      ==req==>    GET        ==req==>   ip-api.com
 JSON                  JSON
-https:/api            http://ip-api.com/json/[ip]
-
+https:/api            http://ip-api.com/json/ip
+data=ip
                       latitude   <==res==
                       longitude
                       ISP
@@ -27,6 +27,7 @@ https:/api            http://ip-api.com/json/[ip]
                       GET        ==req==>   api.wunderground.com
                       JSON
                       http://api.wunderground.com/api/[api key]/conditions/q/...json
+                      q=latitude,longitude
 
 temp_f    <==res==    temp_f     <==res==
 city                  city
