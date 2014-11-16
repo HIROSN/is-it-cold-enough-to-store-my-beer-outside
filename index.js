@@ -44,7 +44,7 @@ var api = function(req, res) {
           isp: location.isp
         };
 
-        if (!req.body.ip) { return res.jsonp(json); }
+        if (req.query.callback) { return res.jsonp(json); }
         res.json(json);
       }).done();
     });

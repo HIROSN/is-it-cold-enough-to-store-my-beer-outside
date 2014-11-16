@@ -72,4 +72,19 @@ describe('REST API tests', function() {
       done();
     });
   });
+
+  it('should be able to handle a JSONP GET request', function(done) {
+    chai.request(server).
+    get('/api?ip=8.8.8.8&callback=callback').
+    end(function(err, res) {
+      expect(err).equals(null);
+      expect(res).to.be.a('object');
+      expect(res).to.have.status(200);
+      expect(res.text.match(/callback\(\{.*\}\)/i)).is.not.equal(null);
+      var json = JSON.parse(res.text.match(/\{.*\}/i)[0]);
+      expect(json.isp).to.equal('Google');
+      expect(json.city).to.equal('Mountain View, CA USA');
+      done();
+    });
+  });
 });
