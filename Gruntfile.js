@@ -5,6 +5,7 @@ module.exports = function(grunt) {
 
   var srcFiles = [
     '*.js',
+    'lib/**/*.js',
     'public/**/*.js'
   ].concat(testFiles);
 
