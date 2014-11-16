@@ -35,3 +35,4 @@ state                 state
 country               country
 ISP
 ```
+One benefit of using IP API is that this app is no longer required to get a consent from the user to use the geolocation of the user. When the user is on mobile in the east side, the location shown by this app could be the location of the carrier in downtown, which is not terribly wrong for the assignment. This change was made as an experiment preparing for the workWherever project next week.
