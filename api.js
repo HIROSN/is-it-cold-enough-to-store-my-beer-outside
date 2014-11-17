@@ -16,6 +16,9 @@ var api = function(req, res) {
     yesNo: yesNo,
     tempf: tempf,
     city: city,
+    wind: req.current_observation.wind_string,
+    precip: req.current_observation.precip_today_in,
+    icon: req.current_observation.icon_url,
     ip: req.isp.query,
     isp: req.isp.isp
   };
