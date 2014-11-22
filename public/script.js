@@ -49,8 +49,8 @@ $(function() {
   };
 
   var speedTest = function(done) {
-    var stepKbs = 256;
-    var maxItr = 20;
+    var stepKbs = 512;
+    var maxItr = 10;
     var minItr = 10;
 
     var itr = 0;
