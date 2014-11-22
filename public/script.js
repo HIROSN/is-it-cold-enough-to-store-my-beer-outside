@@ -49,9 +49,9 @@ $(function() {
   };
 
   var speedTest = function(done) {
-    var stepKbs = 512;
-    var maxItr = 10;
-    var minItr = 10;
+    var stepKbs = 1024;
+    var maxItr = 5;
+    var minItr = 3;
 
     var itr = 0;
     var msecStarted = new Date().getTime();
@@ -75,7 +75,7 @@ $(function() {
         if (msecPrev) { msecTotal += msec - msecPrev; }
         msecPrev = msec;
 
-        if (itr < maxItr && (itr < minItr || msecElapsed < 11000)) {
+        if (itr <= maxItr && (itr <= minItr || msecElapsed < 11000)) {
           ++itr;
           return downloadTest(sizeKbs + stepKbs);
         }
