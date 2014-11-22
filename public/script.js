@@ -49,9 +49,9 @@ $(function() {
   };
 
   var speedTest = function(done) {
-    var sizeKbs = 1024;
-    var maxItr = 5;
-    var minItr = 5;
+    var sizeKbs = 512;
+    var maxItr = 10;
+    var minItr = 10;
 
     var itr = 0;
     var msecStarted = new Date().getTime();
