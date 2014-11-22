@@ -71,7 +71,11 @@ $(function() {
         var msec = new Date().getTime() - +xhr.getResponseHeader('x-Date');
         if (msecPrev) { msecTotal += msec - msecPrev; }
         msecPrev = msec;
-        if (itr-- > 0) { return downloadTest(sizeKbs + stepKbs); }
+
+        if (itr-- > (maxItr - 2) && msecTotal < 11000) {
+          return downloadTest(sizeKbs + stepKbs);
+        }
+
         var err = (msecTotal <= 0);
         var mbpsDown = !err && (stepKbs * 8 / (msecTotal / maxItr));
         done(err, mbpsDown);
