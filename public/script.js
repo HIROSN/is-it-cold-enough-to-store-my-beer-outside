@@ -49,9 +49,9 @@ $(function() {
   };
 
   var speedTest = function(done) {
-    var stepKbs = 1024;
-    var maxItr = 5;
-    var minItr = 3;
+    var stepKbs = 256;
+    var maxItr = 20;
+    var minItr = 10;
 
     var itr = 0;
     var msecStarted = new Date().getTime();
