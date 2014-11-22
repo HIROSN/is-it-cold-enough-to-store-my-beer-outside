@@ -71,8 +71,8 @@ $(function() {
 
       dfd.promise().then(function() {
         var msecResponse = new Date().getTime();
-        var msecTotal += msecResponse - msecRequest;
         var msecElapsed = msecResponse - msecStarted;
+        msecTotal += msecResponse - msecRequest;
 
         if (itr < maxItr && (itr < minItr || msecElapsed < 11000)) {
           ++itr;
