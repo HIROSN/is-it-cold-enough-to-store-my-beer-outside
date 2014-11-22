@@ -80,7 +80,7 @@ $(function() {
         }
 
         var err = (msecTotal <= 0);
-        var mbpsDown = !err && (stepKbs * 8 / (msecTotal / maxItr));
+        var mbpsDown = !err && (stepKbs * 8 / (msecTotal / (maxItr - itr));
         done(err, mbpsDown);
       }).fail(function(err) {
         done(err);
