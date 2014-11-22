@@ -61,7 +61,7 @@ $(function() {
       var dfd = $.Deferred();
       var msecRequest = new Date().getTime();
 
-      var xhr = $.ajax({
+      $.ajax({
         contentType: 'text/plain; charset=utf-8',
         url: '/speedtest/' + sizeKbs,
         dataType: 'text',
@@ -76,7 +76,7 @@ $(function() {
 
         if (itr < maxItr && (itr < minItr || msecElapsed < 11000)) {
           ++itr;
-          return downloadTest(sizeKbs + sizeKbs);
+          return downloadTest(sizeKbs);
         }
 
         var err = (msecTotal <= 0 || 0 === itr);
@@ -87,7 +87,7 @@ $(function() {
       });
     };
 
-    downloadTest(stepKbs);
+    downloadTest(sizeKbs);
   };
 
   getWeather(function() {
