@@ -72,7 +72,8 @@ $(function() {
         if (msecPrev) { msecTotal += msec - msecPrev; }
         msecPrev = msec;
 
-        if (itr-- > (maxItr - 2) && msecTotal < 11000) {
+        if (itr > 0 && (itr > (maxItr - 2) || msecTotal < 11000)) {
+          --itr;
           return downloadTest(sizeKbs + stepKbs);
         }
 
