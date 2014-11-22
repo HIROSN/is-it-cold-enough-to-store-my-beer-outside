@@ -53,6 +53,7 @@ $(function() {
     var maxItr = 5;
 
     var itr = maxItr;
+    var msecStarted = new Date().getTime();
     var msecTotal = 0;
     var msecPrev;
 
@@ -69,10 +70,11 @@ $(function() {
 
       dfd.promise().then(function() {
         var msec = new Date().getTime() - +xhr.getResponseHeader('x-Date');
+        var msecElapsed = new Date().getTime() - msecStarted;
         if (msecPrev) { msecTotal += msec - msecPrev; }
         msecPrev = msec;
 
-        if (itr > 0 && (itr > (maxItr - 2) || msecTotal < 11000)) {
+        if (itr > 0 && (itr > (maxItr - 2) || msecElapsed < 11000)) {
           --itr;
           return downloadTest(sizeKbs + stepKbs);
         }
