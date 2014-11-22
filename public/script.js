@@ -49,19 +49,19 @@ $(function() {
   };
 
   var speedTest = function(done) {
-    var sizeKbs = 512;
-    var maxItr = 10;
-    var minItr = 10;
+    var stepKbs = 1024;
+    var maxItr = 5;
+    var minItr = 3;
 
     var itr = 0;
     var msecStarted = new Date().getTime();
     var msecTotal = 0;
+    var msecPrev;
 
     var downloadTest = function(sizeKbs) {
       var dfd = $.Deferred();
-      var msecRequest = new Date().getTime();
 
-      $.ajax({
+      var xhr = $.ajax({
         contentType: 'text/plain; charset=utf-8',
         url: '/speedtest/' + sizeKbs,
         dataType: 'text',
@@ -70,24 +70,25 @@ $(function() {
       });
 
       dfd.promise().then(function() {
-        var msecResponse = new Date().getTime();
-        var msecElapsed = msecResponse - msecStarted;
-        msecTotal += msecResponse - msecRequest;
+        var msec = new Date().getTime() - +xhr.getResponseHeader('x-Date');
+        var msecElapsed = new Date().getTime() - msecStarted;
+        if (msecPrev) { msecTotal += msec - msecPrev; }
+        msecPrev = msec;
 
         if (itr < maxItr && (itr < minItr || msecElapsed < 11000)) {
           ++itr;
-          return downloadTest(sizeKbs);
+          return downloadTest(sizeKbs + stepKbs);
         }
 
         var err = (msecTotal <= 0 || 0 === itr);
-        var mbpsDown = !err && (sizeKbs * 8 / (msecTotal / itr));
+        var mbpsDown = !err && (stepKbs * 8 / (msecTotal / itr));
         done(err, mbpsDown);
       }).fail(function(err) {
         done(err);
       });
     };
 
-    downloadTest(sizeKbs);
+    downloadTest(stepKbs);
   };
 
   getWeather(function() {
