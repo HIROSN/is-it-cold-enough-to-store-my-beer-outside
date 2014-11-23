@@ -33,17 +33,14 @@ describe('REST API tests', function() {
     });
   });
 
-  it('should work for post /api with Google Public DNS IP', function(done) {
+  it('should return 500 for post /api', function(done) {
     chai.request(server).
     post('/api').
     send({ip: '8.8.8.8'}).
     end(function(err, res) {
       expect(err).equals(null);
       expect(res).to.be.a('object');
-      expect(res).to.have.status(200);
-      expect(res.body).to.be.a('object');
-      expect(res.body.isp).to.equal('Google');
-      expect(res.body.city).to.equal('Mountain View, CA USA');
+      expect(res).to.have.status(500);
       done();
     });
   });

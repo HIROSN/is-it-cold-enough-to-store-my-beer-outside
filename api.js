@@ -18,10 +18,13 @@ var api = function(req, res) {
     city: city,
     wind: req.current_observation.wind_string,
     precip: req.current_observation.precip_today_in,
-    icon: req.current_observation.icon_url,
-    ip: req.isp.query,
-    isp: req.isp.isp
+    icon: req.current_observation.icon_url
   };
+
+  if (req.isp) {
+    json.ip = req.isp.query;
+    json.isp = req.isp.isp;
+  }
 
   if (req.query.callback) { return res.jsonp(json); }
   res.json(json);
