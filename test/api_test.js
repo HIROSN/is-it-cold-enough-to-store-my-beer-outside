@@ -11,10 +11,10 @@ chai.use(chaihttp);
 
 describe('REST API tests', function() {
   it('should return 500 for post /api with empty json', function(done) {
-    chai.request(server).
-    post('/api').
-    send({}).
-    end(function(err, res) {
+    chai.request(server)
+    .post('/api')
+    .send({})
+    .end(function(err, res) {
       expect(err).equals(null);
       expect(res).to.be.a('object');
       expect(res).to.have.status(500);
@@ -23,9 +23,9 @@ describe('REST API tests', function() {
   });
 
   it('should return 500 for post /api without data', function(done) {
-    chai.request(server).
-    post('/api').
-    end(function(err, res) {
+    chai.request(server)
+    .post('/api')
+    .end(function(err, res) {
       expect(err).equals(null);
       expect(res).to.be.a('object');
       expect(res).to.have.status(500);
@@ -34,10 +34,10 @@ describe('REST API tests', function() {
   });
 
   it('should return 500 for post /api', function(done) {
-    chai.request(server).
-    post('/api').
-    send({ip: '8.8.8.8'}).
-    end(function(err, res) {
+    chai.request(server)
+    .post('/api')
+    .send({ip: '8.8.8.8'})
+    .end(function(err, res) {
       expect(err).equals(null);
       expect(res).to.be.a('object');
       expect(res).to.have.status(500);
@@ -46,9 +46,9 @@ describe('REST API tests', function() {
   });
 
   it('should return 500 for get /api without query', function(done) {
-    chai.request(server).
-    get('/api').
-    end(function(err, res) {
+    chai.request(server)
+    .get('/api')
+    .end(function(err, res) {
       expect(err).equals(null);
       expect(res).to.be.a('object');
       expect(res).to.have.status(500);
@@ -57,9 +57,9 @@ describe('REST API tests', function() {
   });
 
   it('should work for get /api with Google Public DNS IP', function(done) {
-    chai.request(server).
-    get('/api?ip=8.8.8.8').
-    end(function(err, res) {
+    chai.request(server)
+    .get('/api?ip=8.8.8.8')
+    .end(function(err, res) {
       expect(err).equals(null);
       expect(res).to.be.a('object');
       expect(res).to.have.status(200);
@@ -71,9 +71,9 @@ describe('REST API tests', function() {
   });
 
   it('should be able to handle a JSONP GET request', function(done) {
-    chai.request(server).
-    get('/api?ip=8.8.8.8&callback=callback').
-    end(function(err, res) {
+    chai.request(server)
+    .get('/api?ip=8.8.8.8&callback=callback')
+    .end(function(err, res) {
       expect(err).equals(null);
       expect(res).to.be.a('object');
       expect(res).to.have.status(200);

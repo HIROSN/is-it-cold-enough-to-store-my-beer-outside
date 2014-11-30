@@ -4,6 +4,13 @@ $(function() {
   if (!navigator.geolocation) { return; }
   var $yesNo = $('#yesNo');
 
+  var animationEnd =
+    'webkitAnimationEnd ' +
+    'mozAnimationEnd ' +
+    'MSAnimationEnd ' +
+    'oanimationend ' +
+    'animationend';
+
   navigator.geolocation.getCurrentPosition(function(position) {
     var dfd = $.Deferred();
 
@@ -23,16 +30,14 @@ $(function() {
     });
 
     dfd.promise().then(function(results) {
-      $yesNo.text(results.yesNo).
-        addClass('animated tada').
-        one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd ' +
-          'oanimationend animationend', function() {
-            $yesNo.removeClass('animated tada');
-            $('#tempf').text(results.tempf + '°F');
-            $('#city').text(results.city);
-            $('.info').slideDown('fast');
-          }
-        );
+      $yesNo.text(results.yesNo)
+      .addClass('animated tada')
+      .one(animationEnd, function() {
+        $yesNo.removeClass('animated tada');
+        $('#tempf').text(results.tempf + '°F');
+        $('#city').text(results.city);
+        $('.info').slideDown('fast');
+      });
     });
   });
 
