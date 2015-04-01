@@ -4,5 +4,7 @@
 upstream: https://coldenoughtostorebeeroutside.herokuapp.com
 
 PaaS: Heroku
+
 Dependencies: express, body-parser, superagent, wunderground-api-client
+
 Tests: chai-http
