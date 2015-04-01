@@ -42,11 +42,15 @@ $(function() {
   });
 
   $yesNo.on('mouseenter', function() {
-    $yesNo.addClass('animated rubberBand');
+    if (!$yesNo.hasClass('rollOut')) {
+      $yesNo.addClass('animated rubberBand');
+    }
   });
 
   $yesNo.on('mouseleave', function() {
-    $yesNo.removeClass('animated rubberBand');
+    if (!$yesNo.hasClass('rollOut')) {
+      $yesNo.removeClass('animated rubberBand');
+    }
   });
 
   $yesNo.on('click', function() {
