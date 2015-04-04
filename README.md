@@ -8,3 +8,9 @@ PaaS: Heroku
 Dependencies: express, body-parser, superagent, wunderground-api-client
 
 Tests: chai-http
+
+Demonstrates:
+- Express middleware
+- Protecting API key
+- Animate.css
+- REST API tests using chai-http
