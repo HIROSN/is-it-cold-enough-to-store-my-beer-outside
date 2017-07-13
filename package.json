@@ -13,9 +13,6 @@
     "superagent": "^0.21.0",
     "wunderground-api-client": "^0.1.0"
   },
-  "engines": {
-    "node": "0.10.x"
-  },
   "repository": {
     "type": "git",
     "url": "https://github.com/HIROSN/is-it-cold-enough-to-store-my-beer-outside.git"
